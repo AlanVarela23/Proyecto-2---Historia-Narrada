@@ -1,0 +1,38 @@
+/*Proyecto 2 - Historia Narrada 
+Alan Varela
+
+Nombre de juego:
+
+Changelog
+(2022-11-16)
+Creacion programa 
+
+*/
+
+#include <iostream>
+#include <time.h>
+#include <string>
+#include <conio.h>
+
+
+
+int main()
+{
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  return 0;
+}
