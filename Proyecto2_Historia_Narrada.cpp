@@ -3,33 +3,21 @@ Alan Varela
 
 Nombre de juego: Non Exitus
 
-
-(2022-11-16) 4 hrs
-Creacion programa
-Desarrollo de historia
-(2022-11-17) 3 hrs
-Empezar programacion 
-(2022-11-18) 6 hrs
-
 */
 
 #include <iostream>
-#include <time.h>
 #include <Windows.h>
-#include <cstring>
 #include <conio.h>
-#include <stdio.h>
+#include <cstdlib>
+
 struct propiedadesJuego
 {
 	int juegoEnCurso = true;
-	int codigo = 1337;
 }partida;
 struct propiedadesJugador
 {
 	std::string nombre;
-	int vida=100;
-	int ataque=1;
-	int habilidad=0;
+
 }jugador;
 
 
@@ -38,6 +26,7 @@ void barraCarga();
 void lluvia();
 //Funciones desarrollo Juego
 void morir();
+void sobrevivir();
 void seguir();
 int main()
 {
@@ -59,7 +48,6 @@ int main()
 	system("CLS");
 	//Prologo
 	std::cout << "Introduce tu nombre: "; std::cin >> jugador.nombre;	
-	/*
 	for (int i = 0; i < 40; i++)
 	{
 		std::cout << "Introduce tu nombre: "<< std::endl;
@@ -85,14 +73,10 @@ int main()
 	Sleep(3700);
 	system("CLS");
 	system("color 7");
-	*/
 	std::cout << "Esta es tu primera interaccion del juego\nPara elegir la opcion que deseas escribe el numero de la opcion y presiona ENTER\n" << std::endl;
-	//desarrollo de juego
-	while(partida.juegoEnCurso)
-	{	
-		//Bill te pregunta sobre tu maquina, primera interaccion no tiene efecto en el juego
-		do
-		{
+	//Bill te pregunta sobre tu maquina, primera interaccion no tiene efecto en el juego
+	do
+	{
 			std::cout << R"(
 			____________________________
 			!\_________________________/!\
@@ -134,8 +118,11 @@ int main()
 				std::cout << "Elige una opcion valida\n" << std::endl;
 				break;
 			}
-		} while (resp!=1 && resp != 2);
-		seguir();
+	} while (resp!=1 && resp != 2);
+	seguir();
+	//desarrollo de juego
+	while(partida.juegoEnCurso)
+	{	
 		std::cout << "Recuerda que la opcion que eligas va a tener efecto en la progresion del juego\n";
 	   
 		//Bill te invita a su fiesta, decides si quedarte en tu departamento o ir a la fiesta, la historia se desarrolla
@@ -517,9 +504,7 @@ Bang! Bang!                     .'/       |
 					std::cout << jugador.nombre << ": Que me diste, me siento muy mal" << std::endl;
 					Sleep(2000);
 					std::cout << "Bill(Vincta): Ya esta hecho jefe" << std::endl;
-					Sleep(2000);
-					std::cout << "Hombre misterioso: Te tienen rodeado Vincta, la organizacion no olvidara tu sacrificio" << std::endl;
-					Sleep(3500);
+					Sleep(2300);
 					morir();
 				}
 				//3 NO tomo la bebida lo emboscaron MUERTE
@@ -707,7 +692,7 @@ L______________||O-----------------\   |____/_\ /
 				}
 			} while (resp != 1 && resp != 2);
 			seguir();
-			//2. Vio la television FALTA 
+			//2. Vio la television 
 			if (resp==1)
 			{
 				do
@@ -746,7 +731,7 @@ L______________||O-----------------\   |____/_\ /
 					}
 				} while (resp != 1 && resp != 2);
 				seguir();
-				//3. Decidio ir a investigar
+				//3. Decidio ir a investigar MUERTE
 				if (resp==1)
 				{
 					do
@@ -879,7 +864,7 @@ _______________________
 						
 						} while (resp != 1 && resp != 2);
 						seguir();
-						//5 Confiaste en Adiutor
+						//5 Confiaste en Adiutor MUERTE
 						if (resp == 1)
 						{
 							do
@@ -1032,46 +1017,38 @@ _____`--._ ''      . '---'``--._|:::::::|:::::::::::::::::::::::|
 									if (resp==1337)
 									{
 										std::cout << jugador.nombre << " del futuro: Perfecto!, siguenos" << std::endl;
-										Sleep(150);
-										std::cin.ignore();
+										Sleep(1200);										
 										std::cout << "\n\nPresiona ENTER para continuar..." << std::endl;
 										std::cin.get();
 										system("CLS");
-										do
-										{
-											std::cout << R"(
- 
-
-											)" << std::endl;
-											std::cout << jugador.nombre << " del futuro: Tenemos 2 alternativas y necesitamos tomar la decision en este momento\nCada vez mas cazarrecompensas estan llegando a este ano" << std::endl;
-											std::cout << "(1) Enfrentarlos\n(2) Correr" << std::endl;
-											std::cin >> resp;
-
-											switch (resp)
-											{
-											case 1:
-												std::cout << "\n";
-												std::cout << jugador.nombre << ": En que les puedo ayudar, que es lo que buscan?" << std::endl;
-												Sleep(150);
-												std::cout << "Hombre misterioso: A ti " << jugador.nombre << ", a ti te buscamos" << std::endl;
-												break;
-											case 2:
-												std::cout << "\n";
-												std::cout << "Decidiste correr y los hombres corren detras de ti" << std::endl;
-												std::cout << "Hombre misterioso: " << jugador.nombre << " puedes correr pero no esconderte" << std::endl;
-												Sleep(150);
-												break;
-											default:
-												system("CLS");
-												std::cout << "Elige una opcion valida\n" << std::endl;
-												break;
-											}
-										} while (resp != 1 && resp != 2);
-										seguir();
+										std::cout << R"(			                            
+    #############        
+    ##         ##    
+    #  ~~   ~~  #     
+    #  ()   ()  #    
+    (     ^     )    
+     |         |      
+     |  {===}  |   
+      \       /      
+     /  -----  \      
+  ---  |%\ /%|  ---    
+/      |%%%%%|     \    
+       |%/ \%|            
+				)" << std::endl;
+										Sleep(2000);
+										std::cout << "Daimon: Hola " << jugador.nombre << " , en esta epoca eres facil de enganar" << std::endl;
+										Sleep(2000);
+										std::cout << jugador.nombre << ": De que estas hablando?" << std::endl;
+										Sleep(2000);										
+										std::cout << "Daimon: Adios "<<jugador.nombre << std::endl;
+										Sleep(2500);
+										morir();																														
 									}
 									//No supiste el codigo MUERTE
 									else
 									{
+										std::cout << jugador.nombre << ": No se" << std::endl;
+										Sleep(2000);
 										std::cout << R"(
 					          ^
 					         | |
@@ -1256,9 +1233,9 @@ _____`--._ ''      . '---'``--._|:::::::|:::::::::::::::::::::::|
 					morir();
 				}
 			}
-			//2. Siguio trabajando FALTA
+			//2. Siguio trabajando Sobrevive
 			else
-			{
+		{
 			std::cout << R"(
              ____________________________________________________
             /                                                    \
@@ -1337,8 +1314,8 @@ _____`--._ ''      . '---'``--._|:::::::|:::::::::::::::::::::::|
            |   | URGENTE                                     |    |
            |   | Sal de tu departamento en este momento, te  |    |
            |   | estan buscando.                             |    |
-           |   |                                             |    |
-           |   |                                             |    |
+           |   | Estoy afuera de la puerta principal, sube   |    |
+           |   | al auto.                                    |    |
            |   |                                             |    |
            |   |                                             |    |
            |   |                                             |    |
@@ -1383,11 +1360,131 @@ _____`--._ ''      . '---'``--._|:::::::|:::::::::::::::::::::::|
 				seguir();
 				//Saliste de tu departamento
 				if (resp == 1)
+				  {
+					std::cout << R"(
+                       ____________________
+                     //|           |        \
+                   //  |           |          \
+      ___________//____|___________|__________()\__________________
+    /__________________|_=_________|_=___________|_________________{}
+    [           ______ |           | .           | ==  ______      { }
+  __[__        /##  ##\|           |             |    /##  ##\    _{# }_
+ {_____)______|##    ##|___________|_____________|___|##    ##|__(______}
+             /  ##__##                              /  ##__##        \
+----------------------------------------------------------------------------
+								)" << std::endl;
+					Sleep(2000);
+					std::cout << "Hombre: Sube!" << std::endl;
+					Sleep(2000);
+					std::cout << jugador.nombre << ": Quien eres?" << std::endl;
+					Sleep(2000);
+					std::cout << "Hombre: Entre menos sepas mejor "<< jugador.nombre << std::endl;
+					Sleep(2000);
+					std::cout << "\n\nPresiona ENTER para continuar..." << std::endl;
+					std::cin.get();
+					system("CLS");
+					std::cout << R"(
+                    *                 *                  *              *
+                                                      *             *
+                        *            *                             ___
+  *               *                                          |     | |
+        *              _________##                 *        / \    | |
+                      @\\\\\\\\\##    *     |              |--o|===|-|
+  *                  @@@\\\\\\\\##\       \|/|/            |---|   | |
+                    @@ @@\\\\\\\\\\\    \|\\|//|/     *   /     \  | |
+             *     @@@@@@@\\\\\\\\\\\    \|\|/|/         |       | | |
+                  @@@@@@@@@----------|    \\|//          |       |=| |
+    ____          @@ @@@ @@__________|     \|/           |       | | |
+  _|___@|__       @@@@@@@@@__________|     \|/           |_______| |_|
+=|__ _____ |=     @@@@ .@@@__________|      |             |@| |@|  | |
+____0_____0__\|/__@@@@__@@@__________|_\|/__|___\|/__\|/___________|_|_
+								)" << std::endl;
+				Sleep(2000);
+				std::cout << jugador.nombre << ": Que es este lugar?" << std::endl;
+				Sleep(2000);
+				std::cout << "Hombre: En la parte trasera hay un cohete espacial"<<std::endl;
+				Sleep(2000);
+				std::cout << "Hombre: Lo unico que tienes que saber es que alguien te contacto y te dio un codigo, usalo" << std::endl;
+				Sleep(2000);
+				std::cout << jugador.nombre << ": A donde voy?" << std::endl;
+				Sleep(2000);
+				std::cout << "Hombre: No confies en nadie, todos mienten" << std::endl;
+				std::cout << "\n\nPresiona ENTER para continuar..." << std::endl;				
+				std::cin.get();
+				system("CLS");
+				std::cout << "Ingresa el codigo de lanzamiento: " << std::endl;
+				std::cin >> resp;
+				Sleep(2000);
+				system("CLS");
+				if (resp==1337)
 				{
+std::cout << R"(
+                   .'.
+                   |o|
+                  .'o'.
+                  |.-.|
+                  '   '
+                   ( )
+                    )
+                   ( )
 
+               ____
+          .-'""p 8o""`-.
+       .-'8888P'Y.`Y[ ' `-.
+     ,']88888b.J8oo_      '`.
+   ,' ,88888888888["        Y`.
+  /   8888888888P            Y8\
+ /    Y8888888P'             ]88\
+:     `Y88'   P              `888:
+:       Y8.oP '- >            Y88:
+|          `Yb  __             `'|
+:            `'d8888bo.          :
+:             d88888888ooo.      ;
+ \            Y88888888888P     /
+  \            `Y88888888P     /
+   `.            d88888P'    ,'
+     `.          888PP'    ,'
+       `-.      d8P'    ,-'   
+          `-.,,_'__,,.-'
+								)" << std::endl;
+				
+					Sleep(2500);
+					sobrevivir();
 				}
-				//Ignoraste el mensaje MUERTE
 				else
+				{
+					std::cout << R"(
+                               ________________
+                          ____/ (  (    )   )  \___
+                         /( (  (  )   _    ))  )   )\
+                       ((     (   )(    )  )   (   )  )
+                     ((/  ( _(   )   (   _) ) (  () )  )
+                    ( (  ( (_)   ((    (   )  .((_ ) .  )_
+                   ( (  )    (      (  )    )   ) . ) (   )
+                  (  (   (  (   ) (  _  ( _) ).  ) . ) ) ( )
+                  ( (  (   ) (  )   (  ))     ) _)(   )  )  )
+                 ( (  ( \ ) (    (_  ( ) ( )  )   ) )  )) ( )
+                  (  (   (  (   (_ ( ) ( _    )  ) (  )  )   )
+                 ( (  ( (  (  )     (_  )  ) )  _)   ) _( ( )
+                  ((  (   )(    (     _    )   _) _(_ (  (_ )
+                   (_((__(_(__(( ( ( |  ) ) ) )_))__))_)___)
+                   ((__)        \\||lll|l||///          \_))
+                            (   /(/ (  )  ) )\   )
+                          (    ( ( ( | | ) ) )\   )
+                           (   /(| / ( )) ) ) )) )
+                         (     ( ((((_(|)_)))))     )
+                          (      ||\(|(|)|/||     )
+                        (        |(||(||)||||        )
+                          (     //|/l|||)|\\ \     )
+                        (/ / //  /|//||||\\  \ \  \ _)
+								)" << std::endl;
+					Sleep(2500);
+					morir();
+				}
+					
+			    }
+			     //Ignoraste el mensaje MUERTE
+			     else
 				{
 					std::cout <<"Se escucha un fuerte golpe en la puerta de tu departamento " << std::endl;
 					Sleep(1500);
@@ -1497,6 +1594,52 @@ void morir()
 				break;
 			}
 		} while (opc != 1 && opc != 2);
+
+
+
+
+}
+void sobrevivir()
+{
+	int opc;
+	system("cls");
+	system("color a");
+	std::cout << R"(
+   _____       _                    _       _     _       _ 
+  / ____|     | |                  (_)     (_)   | |     | |
+ | (___   ___ | |__  _ __ _____   _____   ___ ___| |_ ___| |
+  \___ \ / _ \| '_ \| '__/ _ \ \ / / \ \ / / / __| __/ _ \ |
+  ____) | (_) | |_) | | |  __/\ V /| |\ V /| \__ \ ||  __/_|
+ |_____/ \___/|_.__/|_|  \___| \_/ |_| \_/ |_|___/\__\___(_)                                                                                               
+						)" << std::endl;
+	Sleep(2000);
+	system("cls");
+	system("color 7");
+	do
+	{
+		std::cout << "(1) Jugar de nuevo\n(2) Salir\n";
+		std::cin >> opc;
+
+		switch (opc)
+		{
+		case 1:
+
+			std::cout << "\nSuerte!" << std::endl;
+			Sleep(500);
+			system("cls");
+			break;
+		case 2:
+			partida.juegoEnCurso = false;
+			Sleep(500);
+			std::cout << "\nGracias por jugar!\n\n" << std::endl;
+
+			break;
+		default:
+			system("CLS");
+			std::cout << "Elige una opcion valida\n" << std::endl;
+			break;
+		}
+	} while (opc != 1 && opc != 2);
 
 
 
